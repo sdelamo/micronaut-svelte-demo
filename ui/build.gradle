@@ -1,0 +1,13 @@
+import example.micronaut.FrontEndPlugin
+
+apply plugin: FrontEndPlugin
+
+task cleanPublicBuild(type: Delete) {
+    delete file("public/build")
+}
+task cleanNodeModules(type: Delete) {
+    delete file("node_modules")
+}
+clean.dependsOn(cleanPublicBuild)
+clean.dependsOn(cleanNodeModules)
+build.dependsOn("npmBuild")
